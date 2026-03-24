@@ -1,7 +1,10 @@
-package com.watodotoday.domain.todo;
+package com.watodotoday.todo;
 
-import com.watodotoday.domain.todo.dto.TodoRequest;
-import com.watodotoday.domain.todo.dto.TodoResponse;
+import com.watodotoday.domain.todo.TodoItem;
+import com.watodotoday.domain.todo.TodoRepository;
+import com.watodotoday.domain.todo.TodoStatus;
+import com.watodotoday.todo.dto.TodoRequest;
+import com.watodotoday.todo.dto.TodoResponse;
 import com.watodotoday.domain.user.User;
 import com.watodotoday.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;

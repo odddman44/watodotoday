@@ -1,6 +1,8 @@
 package com.watodotoday.security;
 
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,12 +26,23 @@ public class SecurityConfig {
 		http.csrf( csrf -> csrf.disable() )
 			.sessionManagement( session ->
 					session.sessionCreationPolicy( SessionCreationPolicy.STATELESS ) )
+			.exceptionHandling( e -> e
+					.authenticationEntryPoint( (req, res, ex ) ->
+							res.sendError( HttpServletResponse.SC_UNAUTHORIZED )))
 			.authorizeHttpRequests( auth -> auth
 					.requestMatchers( "/api/auth/**" ).permitAll()
 					.anyRequest().authenticated()
 			)
 			.addFilterBefore( jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class );
 		return http.build();
+	}
+
+	@Bean
+	public FilterRegistrationBean<JwtAuthenticationFilter> jwtFilterRegistration(JwtAuthenticationFilter filter) {
+		FilterRegistrationBean<JwtAuthenticationFilter> registration = new FilterRegistrationBean<>(filter);
+		registration.setEnabled( false );
+
+		return registration;
 	}
 
 	@Bean

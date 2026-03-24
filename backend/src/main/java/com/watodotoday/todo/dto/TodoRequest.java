@@ -1,4 +1,4 @@
-package com.watodotoday.domain.todo.dto;
+package com.watodotoday.todo.dto;
 
 import com.watodotoday.domain.todo.Priority;
 
