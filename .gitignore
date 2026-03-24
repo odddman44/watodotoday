@@ -1,0 +1,31 @@
+# Google Drive / macOS
+.DS_Store
+
+# Claude Code (Google Drive로 동기화)
+CLAUDE.md
+.claude/
+
+# IntelliJ
+.idea/
+.vscode/
+
+# Backend
+backend/build/
+backend/.gradle/
+backend/bin/
+*.class
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/*.local
+frontend/logs/
+*.log
+
+# Env
+*.env
+.env*
+
+# 문서
+docs/

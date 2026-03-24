@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: core
+  datasource:
+    url: jdbc:postgresql://localhost:5432/watodotoday
+    username: watodo
+    password: watodo
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+app:
+  jwt:
+    secret: watodotoday-secret-key-for-local-dev-must-be-32-chars-min
+    expiration-ms: 604800000 # 7days
