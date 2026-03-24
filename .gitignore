@@ -5,6 +5,9 @@
 CLAUDE.md
 .claude/
 
+# Codex (Google Drive로 동기화)
+AGENTS.md
+
 # IntelliJ
 .idea/
 .vscode/
