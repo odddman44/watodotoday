@@ -5,13 +5,18 @@ import TodoPage from './pages/TodoPage'
 import DesignPreviewPage from './pages/DesignPreviewPage'
 import PreviewTwoPage from './pages/PreviewTwoPage'
 import PreviewThreePage from './pages/PreviewThreePage'
+import ProtectedRoute from './components/ProtectedRoute'
 
 function App() {
   return (
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       <Route path="/signup" element={<SignupPage />} />
-      <Route path="/" element={<TodoPage />} />
+      <Route path="/" element={
+          <ProtectedRoute>
+            <TodoPage />
+          </ProtectedRoute>
+      } />
       <Route path="/preview" element={<DesignPreviewPage />} />
       <Route path="/preview2" element={<PreviewTwoPage />} />
       <Route path="/preview3" element={<PreviewThreePage />} />

@@ -1,11 +1,13 @@
 package com.watodotoday.auth;
 
 import com.watodotoday.auth.dto.LoginRequest;
+import com.watodotoday.auth.dto.MeResponse;
 import com.watodotoday.auth.dto.SignupRequest;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class AuthController {
 
 	private final AuthService authService;
+
 
 	@PostMapping( "/signup" )
 	public ResponseEntity<Void> signup( @RequestBody SignupRequest request ) {
@@ -43,5 +46,10 @@ public class AuthController {
 		cookie.setMaxAge( 0 ); // 즉시 만료
 		response.addCookie( cookie );
 		return ResponseEntity.ok().build();
+	}
+
+	@GetMapping("/me")
+	public ResponseEntity<MeResponse> me(@AuthenticationPrincipal Long userId) {
+		return ResponseEntity.ok(authService.me(userId));
 	}
 }

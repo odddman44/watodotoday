@@ -1,6 +1,7 @@
 package com.watodotoday.auth;
 
 import com.watodotoday.auth.dto.LoginRequest;
+import com.watodotoday.auth.dto.MeResponse;
 import com.watodotoday.auth.dto.SignupRequest;
 import com.watodotoday.domain.user.User;
 import com.watodotoday.domain.user.UserRepository;
@@ -41,5 +42,11 @@ public class AuthService {
 		}
 
 		return jwtTokenProvider.generate( user.getId() );
+	}
+
+	public MeResponse me(Long userId) {
+		User user = userRepository.findById(userId)
+				.orElseThrow(() -> new IllegalArgumentException("유저 없음"));
+		return new MeResponse( user.getId(), user.getEmail(), user.getNickname());
 	}
 }

@@ -19,3 +19,6 @@ export const signup = (data: SignupRequest) =>
 
 export const logout = () =>
   client.post('/auth/logout')
+
+export const me = () =>
+    client.get('/auth/me')
